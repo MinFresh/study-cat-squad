@@ -54,6 +54,14 @@ const Tasks = () => {
   const today = new Date().toISOString().split('T')[0];
   const isOverdue = (date: string) => date < today;
   
+  // Handler for the "Add New Task" button
+  const handleAddTaskClick = () => {
+    const addTaskButton = document.querySelector('[aria-label="新增任務"]');
+    if (addTaskButton instanceof HTMLElement) {
+      addTaskButton.click();
+    }
+  };
+  
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
@@ -127,7 +135,7 @@ const Tasks = () => {
             {filterTasks(state.tasks, tab as 'all' | 'active' | 'completed').length === 0 && (
               <div className="text-center py-12">
                 <p className="text-muted-foreground mb-4">尚無任務</p>
-                <Button variant="outline" onClick={() => document.querySelector('[aria-label="新增任務"]')?.click()}>
+                <Button variant="outline" onClick={handleAddTaskClick}>
                   添加新任務
                 </Button>
               </div>
